@@ -3,14 +3,13 @@ import { Inter } from '@next/font/google'
 import ProductListingPageScreen from '@/screens/product-listing-page.screen'
 import { ProductListingPageViewModel } from '@/viewmodels/product-listing-page.viewmodel'
 import { ProductsRepository } from '@/repositories/products.repo'
+import { container } from 'tsyringe'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const viewModel = new ProductListingPageViewModel(
-    new ProductsRepository()
-  )
+  const viewModel = container.resolve(ProductListingPageViewModel)
 
   return (
     <>

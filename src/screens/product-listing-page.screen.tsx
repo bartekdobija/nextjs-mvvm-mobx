@@ -19,7 +19,7 @@ const ProductListingPage = ({viewModel}: ProductListingPageProps) => {
       <input ref={inputRef} type="text" />
       <button onClick={onClick}>add</button>
       <ul>
-        {viewModel.skus.map(e => <li key={e.id}>{`${e.name} (${e.category})`}</li>)}
+        {viewModel.skus.map(e => <li key={e.id}>{`${e.name} (${e.category.name})`}</li>)}
       </ul>
     </div>
   )

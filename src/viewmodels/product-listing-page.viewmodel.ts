@@ -1,14 +1,16 @@
 import { SKU } from "@/models/sku.model";
 import { ProductsRepository } from "@/repositories/products.repo";
 import { makeAutoObservable } from "mobx";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 export class ProductListingPageViewModel {
 
   skus: SKU[] = []
 
-  constructor(private productRepo: ProductsRepository) {
+  constructor(private productRepo?: ProductsRepository) {
     makeAutoObservable(this)
-    this.productRepo.getSku()
+    this.productRepo?.getSku()
       .then(result => this.skus = result)
       .catch(() => {});
   }
@@ -22,7 +24,7 @@ export class ProductListingPageViewModel {
       category: { id: 1, name: "Electronics" }
     }
 
-    this.productRepo.addSku(sku)
+    this.productRepo?.addSku(sku)
       .then(list => this.skus = list)
       .catch(() => {})
   }
